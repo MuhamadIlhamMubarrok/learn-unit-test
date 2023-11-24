@@ -1,0 +1,171 @@
+--runTestByPath = ini hanya memanggil 1 file 
+contoh : npx jest --runTestByPath test/equal.test.js atau npx jest equal.test.js
+
+--testNamePatters = ini hanya memanggil 1 file 
+contoh : npx jest --testNamePatters "test toBe"
+
+
+Equals Matchers
+expect().toEqual() => array,object,string
+expect().toBe() => Numbers
+expect().toBeStrict() => string
+
+
+Truthiness Matchers
+expect().toBeNull()
+expet().toBeDefined()
+expet().toBeUndefined()
+expet().toBeTruthy()
+expet().toBeFalsy()
+
+
+Numbers Matchers
+expect(value).toBeGreatherThan() => lebih besar
+expect(value).toBeGreatherThanOrEqual()
+expect(value).toBeLessThan()
+expect(value).toBeLessThanOrEqual()
+
+
+strings Matchers
+
+expect(value).Match(regex)
+
+
+array Matchers
+
+expect(value).toContain(item);
+expect(value).toContainEqual(item);
+
+
+exception Matchers
+
+.ToThrow()
+.ToThrow(exception)
+.ToThrow(message)
+
+
+Not Matchers
+
+tinggal dtambahkan not saja
+
+expect(value).not.blablabla()
+
+async Matchers
+
+
+SETUP FUNCTION
+beforeeach()
+aftereach()
+
+
+ONE TIME SETUP FUNCTION
+beforAll(functions)
+afterAll(functions)
+
+
+SCOPING
+- jest memiliki fitur scoping atau grouping dimana kita bisa membuat group unit test menggunakan function describe()
+- terdapat nested scoping describe(()=>{desribe()})
+
+
+CODE COVERAGE
+- cara menggunakannya hanya menambah atribut collectCoverage dengan nilai true
+"collectCoverage": true
+
+COVERAGE THRESHOLD
+coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: -10,
+    },
+  },
+
+- branches -> alur program saat kita membuat function yang ada if else itu ga cuman 1 alur
+- function -> function
+- lines -> baris
+- statements -> statement
+
+COLLECT COVERAGE
+kadang saat project kita sudah besar, kita ingin menentukan bagian kode mana yang ingin 
+di gunakan untuk menghitung code coveragenya
+
+
+
+FUNCTION it
+di jest terdapat alias untuk function test(), yaitu it()
+tidak ada bedanya
+
+SKIP FUNCTION 
+berfungsi untuk skip unit test yang error atau sudah di handle
+test.skip()
+it.skip()
+
+ONLY FUNCTION
+fungsi untuk menjalankan unit test yang diberikan only
+test.only()
+it.only()
+
+EACH FUNCTION
+pada kasus seperti ini dimana kode unit testnya tidak berbeda, yang berbeda hanya datanya saja
+
+each function memungkinkan kita menggunakan data dalam bentuk array
+it(table)("aaaaaa", (param1, param2)=> {
+
+})
+
+CONCURRANT TEST
+menjalankan unit test secara bersamaan
+dengan menambahkan .concurrant
+anda juga dapat menambahkan maxConcurrency di pakage.json
+
+TO DO FUNCTION 
+digunakan untuk reminder kita bahwa ada unit yang perlu di test
+
+FAILING FUNCTION TEST
+digunakan untuk membuat skenario gagal
+
+MOCK
+mock object sangat cocok untuk kita gunakan ketika melakukan unit test yang berhubungan dengan sistem lain, sehingga kita tidak perlu berinteraksi dg sistem lain tsb
+
+JENIS MOCK
+mock function
+mock class
+mock modules
+
+MOCK functions
+untuk membuat mock functions kita dapat menggunakan jest.fn()
+
+MOCK PROPERTY
+mockFn.mock.calls
+mockFn.mock.results
+
+MOCK RETURN VALUE
+mmebuat jawaban sendiri
+mockReturnValue()
+mockReturnValueOnce()
+
+MOCKIMPLEMENTATION
+mockimplementation() untuk membuat logic sendiri
+
+MOCK ASYNC FUNCTION
+mockResolvedValue()
+mockRejectedValue()
+
+MOCK MATCHERS FUNCTION
+expect(mock).toHaveBeenCalled() => memastikan mock pernah dipanggil
+expect(mock).toHaveBeenCalledTimes(Number) => memastik mock pernah dipanggil sebanya Number
+expect(mock).toHaveBeenCalledWith(arg1,arg2) => memastik mock pernah dipanggil dengan parameter
+
+MOCK MODULES
+jest.mock() => untuk melakukan mock modules
+jest.unmock() => untuk tidak ingin melakukan mock modules
+
+MOCK PARTIAL MODULES
+Saat kita mock modules, secara default seluruh modules tersebut akan di mock oleh jest
+
+kadang kita ingin tidak melakukan mock semua bagian, jest mempunyai fitur jest.requireActual(module)
+
+MOCK CLASS
+
